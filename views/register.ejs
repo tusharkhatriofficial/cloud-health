@@ -1,0 +1,41 @@
+<%- include("partials/authHeader.ejs") %>
+<div class="content">
+<form class="box" action="/register" method="POST">
+    <fieldset>
+        <h1 class="loginText">Sign Up</h1>
+        <%if(user=="doctor" ){%>
+            <div class="form-group">
+                <p for="email">Username</p>
+                <div class="input-group input-group-lg">
+                    <input class="form-control" style="width: 150px !important" type="text" name="username" id="#usr" class="input" required placeholder="abc">
+                    <input style="width: 210px !important" class="form-control" type="text" readonly class="input" required value="@cloudhealth.com">
+                    <input type="Number" value="1" hidden name="doc">
+                </div>
+            </div>
+            <%} else {%>
+            <div class="form-group">
+                <p for="email">Email address</p>
+                <div class="input-group input-group-lg">
+                    <input class="form-control" type="email" name="username" class="input" required placeholder="abc@domain.com">
+                </div>
+            </div>
+            <%}%>
+            <div class="form-group">
+                <p for="password">Password</p>
+                <div class="input-group input-group-lg">
+                    <input <%if(user=="doctor" ){%> style="width: 360px !important"<%}%> class="form-control" type="password" name="password" class="input" required minlength="8"
+                        maxlength="16" placeholder="********">
+                </div>
+                <small>Min 8 digits & Max 16 digits<small></small>
+            </div>
+           
+            <div class="form-group">
+                <p>Already have an account?</p>
+                <a href="/login" class="query">Login here</a>
+            </div>
+            <button type="submit" class="section-btn btn" style="background-color: #1dc9e3;"
+                data-wow-delay="1s">Sign-Up</button>
+        </fieldset>
+</form>
+</div>
+<%- include("partials/authFooter.ejs") %>

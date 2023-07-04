@@ -1,0 +1,16 @@
+<%- include("partials/sideNav.ejs") %>
+
+
+<div class="content" style="padding: 10px">
+    <img src="/images/<%if(user.username.includes("@cloudhealth")) {%>doctor.png <%} else {%>user.png<%}%>" height="250" width="250" alt="">
+    <h2><%=data.name%></h2>
+    <p>E-mail: <%=data.username%></p>
+    <p>Contact No.: <%=data.contact%></p>
+
+    <%if(user.username.includes("@cloudhealth")) {%>
+        <p>Qualifications: <%=data.qualification%></p>
+        <p>Experience: <%=data.exp%> YEARS</p>
+    <%} else {%>
+        <p>Blood Group: <%=data.blood%></p>
+    <%}%>
+</div>

@@ -1,0 +1,43 @@
+<%- include("partials/sideNav.ejs") %>
+<div class="content" style="padding: 40px">
+  <%if(appointments.length > 0) {%>
+    <div style="width:100%; text-align: center;">
+      <h1 style="margin-bottom: 15px; padding-bottom: 10px">Your Appointment</h1>
+      <div class="columns">
+        <div class="column table-header">
+          <h3>Patient</h3>
+        </div>
+        <div class="column table-header">
+          <h3>Name</h3>
+        </div>
+        <div class="column table-header">
+          <h3>Time & Subject</h3>
+        </div>
+        <div class="column table-header">
+            <h3></h3>
+        </div>
+      </div>
+      <%appointments.forEach(e => {%> 
+        <form action="/appointment" method="post">
+        <div class="columns">
+            <div class="column">
+              <img src="/images/user.png" height="70" width="70" alt="">
+            </div>
+            <div class="column">
+              <%=e.patient%>
+            </div>
+            <div class="column">
+              <%=e.time%>
+              <br>
+              "<%=e.subject%>"
+            </div>
+            <div class="column">
+            </div>
+          </div>
+        </form>
+        <%})%>
+    </div>
+    <%} else {%>
+      <h1>No Appointments</h1>
+    <%}%>
+</div>

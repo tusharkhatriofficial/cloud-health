@@ -1,0 +1,46 @@
+<%- include("partials/sideNav.ejs") %>
+
+<div class="content" style="padding: 10px">
+    <div class="fingerprint">
+        <img src="images/fingerprint.png" height="500"
+            width="500" alt="">
+        <h3>Please wait while we scan your Fingerprint...</h3>
+    </div>
+    <form action="/documents" method="post" enctype='multipart/form-data'>
+    <div style="width:100%; text-align: center; display: none;" id="cont">
+      <%if(user.username.includes("@cloudhealth")) {%>
+        <h1>Upload a Prescription</h1>
+      <%} else {%>
+        <h1>Upload Your Medical Documents</h1>
+      <%}%>
+        
+        <div class="file is-info has-name">
+            <input type="text" name="name" class="input" style="width: 35%; margin-right: 15px;"required placeholder="Document Name">
+            <label class="file-label">
+              <input class="file-input" type="file" name="file">
+              <span class="file-cta">
+                <span class="file-icon">
+                  <i class="fas fa-upload"></i>
+                </span>
+                <span class="file-label">
+                  Upload
+                </span>
+              </span>
+              <span class="file-name">
+                Select File
+              </span>
+            </label>
+          </div>
+          <button class="button is-warning" style="display: block; margin-top: 15px">Submit</button>
+        </form>
+    </div>
+</div>
+
+<script>
+    window.onload = function () {
+        setTimeout(function () {
+            document.querySelector(".fingerprint").style.display = "none"
+            document.querySelector("#cont").style.display = "block"
+        }, 3000);
+    };
+</script>

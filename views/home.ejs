@@ -1,0 +1,102 @@
+<%- include("partials/sideNav.ejs") %>
+<!----------------------------------------------------PARTIAL------------------------------------------------------->
+<!-- <div class="area" >
+  <ul class="circles">
+          <li></li>
+          <li></li>
+          <li></li>
+          <li></li>
+          <li></li>
+          <li></li>
+          <li></li>
+          <li></li>
+          <li></li>
+          <li></li>
+  </ul>
+</div > -->
+<div class="content" style="padding: 10px">
+  <div class="notification is-success">
+    <%if(user.username.includes("@cloudhealth")) {%>
+      <p>Hello Doctor! How are you doing today?</p>
+    <%} else {%> 
+      <p>Welcome to Cloud Health, what can we do for you today?</p>
+    <%}%>
+  </div>
+  <%if(user.calls.length > 0) {%>
+    <% user.calls.forEach(e => { %>
+      <%if(!e.read) {%>
+      <form action="/read" method="post" class="notification is-success is-light">
+          <p><%=e.patient%> tried to call you at <u><%=e.time.slice(-55, -30)%></u></p>
+          <input type="text" name="callId" value="<%=e._id%>" hidden>
+          <button type="submit" class="delete"></button>
+      </form>
+      <%}%>
+    <%})}%>
+  <div class="tile is-ancestor">
+    <%if(user.username.includes("@cloudhealth")) {%>
+    <a class="tile is-parent" href="/my-appointments">
+      <article class="tile is-child notification is-primary">
+          <p class="title">Check Your Appointment</p>
+          <p class="subtitle"><i class="fa fa-arrow-right" aria-hidden="true"></i></p>
+      </article>
+    </a>
+    <%} else {%> 
+      <a class="tile is-parent" href="/book-appointment">
+        <article class="tile is-child notification is-primary">
+          <p class="title">Book Appointments</p>
+          <p class="subtitle"><i class="fa fa-arrow-right" aria-hidden="true"></i></p>
+        </article>
+      </a>
+    <%}%>
+        
+      
+    <%if(user.username.includes("@cloudhealth")) {%>
+      <a class="tile is-parent" href="/prescribe">
+        <article class="tile is-child box notification is-danger">
+          <p class="title">Submit Prescription</p>
+          <p class="subtitle"><i class="fa fa-arrow-right" aria-hidden="true"></i></p>
+        </article>
+      </a>
+    <%} else {%> 
+      <a class="tile is-parent" href="/call">
+        <article class="tile is-child box notification is-danger">
+          <p class="title">Consult a Doctor Now!</p>
+          <p class="subtitle"><i class="fa fa-arrow-right" aria-hidden="true"></i></p>
+        </article>
+      </a>
+    <%}%>
+    <%if(user.username.includes("@cloudhealth")) {%>
+        <a class="tile is-parent" href="/calls">
+          <article class="tile is-child box notification is-warning">
+            <p class="title">Consultations</p>
+            <p class="subtitle"><i class="fa fa-arrow-right" aria-hidden="true"></i></p>
+          </article>
+        </a>
+    <%} else {%> 
+        <a class="tile is-parent" href="/documents">
+          <article class="tile is-child box notification is-warning">
+            <p class="title">Submit Medical Documents</p>
+            <p class="subtitle"><i class="fa fa-arrow-right" aria-hidden="true"></i></p>
+          </article>
+        </a>
+    <%}%>
+  </div>
+  <div class="tile is-ancestor">
+    <a class="tile is-parent" href="/issue">
+      <article class="tile is-child box notification is-info">
+        <p class="title">Raise an Issue</p>
+        <p class="subtitle"><i class="fa fa-arrow-right" aria-hidden="true"></i></p>
+      </article>
+    </a>
+    <a class="tile is-parent" href="/feedback">
+      <article class="tile is-child box">
+        <p class="title">Feedback</p>
+        <p class="subtitle"><i class="fa fa-arrow-right" aria-hidden="true"></i></p>
+      </article>
+    </a>
+  </div>
+</div>
+  </body>
+</html>
+
+
